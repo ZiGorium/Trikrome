@@ -90,7 +90,11 @@ a, a:visited {
 	transition: all 0.3s ease-in-out;
 }
 a:hover, a:focus, a:active {
+<<<<<<< HEAD
 	color: #1900ff;
+=======
+	color: ##1900ff;
+>>>>>>> e8595d89bc1061016c28542d593b8b6c1edc0fcb
 	outline: 0;
 }
 
