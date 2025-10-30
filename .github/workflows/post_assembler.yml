@@ -26,11 +26,17 @@ jobs:
             pandoc "$file" -o "posts/$filename.html"
           done
 
-      - name: Commit generated HTML
+      - name: Commit and push generated HTML
         run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
           for file in posts/*.html; do
-            git config user.name "github-actions"
-            git config user.email "actions@github.com"
             git add "$file"
           done
-          git commit -m "Generate HTML posts" || echo "No changes to commit"
+          if ! git diff --cached --quiet; then
+            git commit -m "Generate HTML posts"
+            git push origin main
+          else
+            echo "No changes to commit"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
