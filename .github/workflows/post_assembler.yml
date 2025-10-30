@@ -5,7 +5,6 @@ on:
       - main
     paths:
       - .github/md_posts/**
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,10 +13,8 @@ jobs:
         uses: actions/checkout@v3
         with:
           persist-credentials: false
-
       - name: Install pandoc
         run: sudo apt-get update && sudo apt-get install -y pandoc
-
       - name: Convert markdown to HTML
         run: |
           mkdir -p posts
@@ -25,7 +22,6 @@ jobs:
             filename=$(basename "$file" .md)
             pandoc "$file" -o "posts/$filename.html"
           done
-
       - name: Commit and push generated HTML
         run: |
           git config user.name "github-actions"
