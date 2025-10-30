@@ -4,7 +4,7 @@ on:
     branches:
       - main
     paths:
-      - md_posts/**
+      - .github/md_posts/**
 jobs:
   build:
     runs-on: ubuntu-latest
