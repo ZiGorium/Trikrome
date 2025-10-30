@@ -1,4 +1,4 @@
-name: Build Posts
+name: post_assembler
 on:
   push:
     branches:
