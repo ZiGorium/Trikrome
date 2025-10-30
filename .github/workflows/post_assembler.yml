@@ -4,7 +4,7 @@ on:
     branches:
       - main
     paths:
-      - .github/md_posts/**  # triggers on any new/changed file in .github/md_posts/
+      - .github/md_posts/**
 
 jobs:
   build:
@@ -28,11 +28,11 @@ jobs:
           done
 
       - name: Commit generated HTML
+        shell: bash
         run: |
           files=(posts/*.html)
           if [ ${#files[@]} -gt 0 ]; then
             git config user.name "github-actions"
             git config user.email "actions@github.com"
             git add "${files[@]}"
-            git commit -m "Generate HTML posts" || echo "No c
-
+            git commit -m "Generate HTML posts" || echo "No changes to commit"
