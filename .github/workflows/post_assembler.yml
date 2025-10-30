@@ -30,15 +30,11 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           for file in posts/*.html; do
             git add "$file"
           done
-          if ! git diff --cached --quiet; then
-            git commit -m "Generate HTML posts"
-            git push origin main
-          else
-            echo "No changes to commit"
-          fi
+          git commit -m "Generate HTML posts" || echo "No changes to commit"
+          git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
