@@ -55,17 +55,20 @@ body {
 
 .card-container {
     display: flex;
+    justify-content: center; 
     flex-direction: column; 
     gap: 20px;               /* spacing between cards */
     padding: 20px;
-    overflow-x: auto;        /* horizontal scroll if needed */
+    align-items: center;         /* horizontal scroll if needed */
 }
 
 .card {
     background-color: #000;      /* black background */
     color: white;                /* text color */
-    border-radius: 10px;         /* rounded corners */
+    border-radius: 10px;
+    border: 2px solid #fff;
     padding: 20px;
+    width: 70%;                    /* full width of container */
     min-width: 250px;            /* fixed card width */
     box-shadow: 0 0 10px rgba(0,0,0,0.5); /* subtle shadow */
     font-family: "BigBlue", monospace;
