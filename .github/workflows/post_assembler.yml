@@ -23,7 +23,7 @@ jobs:
           mkdir -p posts
           for file in .github/md_posts/*.md; do
             filename=$(basename "$file" .md)
-            pandoc $file --template=./templates/post_template.html -o posts/output.html
+            pandoc "$file" --standalone --template=./templates/post_template.html --css=../css/style.css -o "posts/$filename.html"
           done
 
       - name: Commit and push generated HTML
