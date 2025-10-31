@@ -1,0 +1,81 @@
+@font-face {
+    font-family: "BigBlue";
+    src: url("../fonts/BigBlueTerm437NerdFontMono-Regular.ttf") format("truetype");
+}
+
+
+body 
+{
+    font-family: "BigBlue", sans-serif;
+    background-color: black;  /* solid black */
+    color: #003bea;    
+}
+
+h1 
+{
+    font-family: "BigBlue", sans-serif;
+    text-align: center;
+}
+nav {
+    display: flex;              /* horizontal row of links */
+    justify-content: center;    /* center the row horizontally */
+    gap: 20px;                  /* space between links */
+}
+nav a {
+    display: inline-block;      /* text inside is block-like but stays in row */
+    text-align: center;         /* center text inside each link */
+    color: #003bea;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 2px solid #FFFFFF;
+}
+a:visited 
+{
+  color: #0000EE; 
+}
+
+
+a
+{
+    display: block;
+    text-align: center;
+}
+
+body {
+    background-image: url("../images/backsite.png");
+    background-size: 120% auto;     /* 120% of the body width, height auto */
+    background-position: center 20%; /* vertical offset */
+    background-repeat: no-repeat;
+    margin: 0;
+    font-family: "BigBlue", monospace;
+    color: white;
+}
+
+
+
+.card-container {
+    display: flex;
+    flex-direction: column; 
+    gap: 20px;               /* spacing between cards */
+    padding: 20px;
+    overflow-x: auto;        /* horizontal scroll if needed */
+}
+
+.card {
+    background-color: #000;      /* black background */
+    color: white;                /* text color */
+    border-radius: 10px;         /* rounded corners */
+    padding: 20px;
+    min-width: 250px;            /* fixed card width */
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* subtle shadow */
+    font-family: "BigBlue", monospace;
+}
+
+.card h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.card p {
+    margin: 0;
+}
