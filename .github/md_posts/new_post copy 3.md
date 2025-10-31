@@ -1,6 +1,6 @@
 # My First Post
 
-This is the test post for the workflow!!!!
+Now, I should see it as a template now.
 
 
 - Item 1
