@@ -1,6 +1,6 @@
 # My First Post
 
-This is a test post for the workflow.
+FINALLY THE TRUTH IS ALIVE AND WELL
 
 - Item 1
 - Item 2
