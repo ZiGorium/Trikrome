@@ -38,3 +38,53 @@ jobs:
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit and push generated HTML
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          for file in posts/*.html; do
+            git add "$file"
+          done
+          git commit -m "Generate HTML posts" || echo "No changes to commit"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Append new posts to index.html
+        run: |
+          INDEX_FILE=index.html
+          TEMP_FILE=index_temp.html
+
+          # Create index.html if it doesn't exist
+          [ -f $INDEX_FILE ] || echo "<html><body><!-- POSTS HERE --></body></html>" > $INDEX_FILE
+
+          # Copy original index.html to temp
+          cp $INDEX_FILE $TEMP_FILE
+
+          # Remove everything after the placeholder
+          awk '/<!-- POSTS HERE -->/ {print; exit} {print}' $TEMP_FILE > $INDEX_FILE
+
+          # Loop through all posts
+          for file in posts/*.html; do
+            # Skip if this post is already in index.html
+            if grep -q "<!-- POST: $(basename $file) -->" $INDEX_FILE; then
+              echo "Skipping existing post: $file"
+              continue
+            fi
+
+            # Extract content inside <body> or specific container
+            sed -n '/<body>/,/<\/body>/p' "$file" | sed '1d;$d' >> $INDEX_FILE
+
+            # Add a comment to mark this post as included
+            echo "<!-- POST: $(basename $file) -->" >> $INDEX_FILE
+          done
+
+          # Close body/html
+          echo "</body></html>" >> $INDEX_FILE
+
+          git add $INDEX_FILE
+          git commit -m "Update index.html with new posts" || echo "No changes to commit"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
