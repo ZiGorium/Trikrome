@@ -38,53 +38,44 @@ jobs:
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Commit and push generated HTML
-        run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          for file in posts/*.html; do
-            git add "$file"
-          done
-          git commit -m "Generate HTML posts" || echo "No changes to commit"
-          git push origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Append new posts to index.html
+      - name: Update index.html with latest 10 posts as cards
         run: |
           INDEX_FILE=index.html
           TEMP_FILE=index_temp.html
 
           # Create index.html if it doesn't exist
-          [ -f $INDEX_FILE ] || echo "<html><body><!-- POSTS HERE --></body></html>" > $INDEX_FILE
+          [ -f $INDEX_FILE ] || echo "<html><head><title>Trikrome</title><meta charset='UTF-8'><link rel='stylesheet' href='css/style.css'></head><body><h1>Trikrome</h1><nav><a href='index.html'>Home</a><a href='posts.html'>Posts</a></nav><hr><p>Trikrome is committed to one principle: Fun, takes hard work.</p><main class='card-container'><!-- POSTS HERE --></main></body></html>" > $INDEX_FILE
 
           # Copy original index.html to temp
           cp $INDEX_FILE $TEMP_FILE
 
-          # Remove everything after the placeholder
+          # Keep everything up to the placeholder
           awk '/<!-- POSTS HERE -->/ {print; exit} {print}' $TEMP_FILE > $INDEX_FILE
 
-          # Loop through all posts
-          for file in posts/*.html; do
-            # Skip if this post is already in index.html
-            if grep -q "<!-- POST: $(basename $file) -->" $INDEX_FILE; then
-              echo "Skipping existing post: $file"
-              continue
-            fi
+          # Get the 10 newest posts
+          POSTS=$(ls -t posts/*.html | head -n 10)
 
-            # Extract content inside <body> or specific container
-            sed -n '/<body>/,/<\/body>/p' "$file" | sed '1d;$d' >> $INDEX_FILE
+          for file in $POSTS; do
+            # Extract the main content inside the post's <body>
+            CONTENT=$(sed -n '/<body>/,/<\/body>/p' "$file" | sed '1d;$d')
 
-            # Add a comment to mark this post as included
-            echo "<!-- POST: $(basename $file) -->" >> $INDEX_FILE
+            # Extract the first <h1> as the post title and the rest as content
+            POST_TITLE=$(echo "$CONTENT" | grep -oP '(?<=<h1>).*(?=</h1>)' | head -n1)
+            POST_BODY=$(echo "$CONTENT" | sed -n '/<h1>/,/<\/h1>/!p')
+
+            # Wrap in a card div
+            echo "<div class='card'>" >> $INDEX_FILE
+            echo "<h2>$POST_TITLE</h2>" >> $INDEX_FILE
+            echo "$POST_BODY" >> $INDEX_FILE
+            echo "</div>" >> $INDEX_FILE
           done
 
-          # Close body/html
-          echo "</body></html>" >> $INDEX_FILE
+          # Close main and HTML
+          echo "</main></body></html>" >> $INDEX_FILE
 
           git add $INDEX_FILE
-          git commit -m "Update index.html with new posts" || echo "No changes to commit"
+          git commit -m "Update index.html with latest 10 posts as cards" || echo "No changes to commit"
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
