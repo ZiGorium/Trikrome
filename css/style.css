@@ -69,7 +69,8 @@ body {
     border: 2px solid #fff;
     padding: 20px;
     width: 70%;                    /* full width of container */
-    min-width: 250px;            /* fixed card width */
+    min-width: 250px;
+    max-width: 500px;            /* fixed card width */
     box-shadow: 0 0 10px rgba(0,0,0,0.5); /* subtle shadow */
     font-family: "BigBlue", monospace;
 }
