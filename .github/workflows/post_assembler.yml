@@ -23,7 +23,11 @@ jobs:
           mkdir -p posts
           for file in .github/md_posts/*.md; do
             filename=$(basename "$file" .md)
-            pandoc "$file" --standalone --template=./templates/post_template.html --css=../css/style.css -o "posts/$filename.html"
+            pandoc "$file" \
+              --standalone \
+              --template=./templates/post_template.html \
+              --css=../css/style.css \
+              -o "posts/$filename.html"
           done
 
       - name: Commit and push generated HTML
@@ -31,9 +35,7 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          for file in posts/*.html; do
-            git add "$file"
-          done
+          git add posts/*.html
           git commit -m "Generate HTML posts" || echo "No changes to commit"
           git push origin main
         env:
@@ -57,12 +59,14 @@ jobs:
           POSTS=$(ls -t posts/*.html | head -n 10)
 
           for file in $POSTS; do
-            # Extract the main content inside the post's <body>
+            # Extract content inside <body>
             CONTENT=$(sed -n '/<body>/,/<\/body>/p' "$file" | sed '1d;$d')
 
-            # Extract the first <h1> as the post title and the rest as content
-            POST_TITLE=$(echo "$CONTENT" | grep -oP '(?<=<h1>).*(?=</h1>)' | head -n1)
-            POST_BODY=$(echo "$CONTENT" | sed -n '/<h1>/,/<\/h1>/!p')
+            # Extract the post title with id="post-title"
+            POST_TITLE=$(echo "$CONTENT" | grep -oP '(?<=<h1 id="post-title">).*(?=</h1>)')
+
+            # Extract the rest of the body after the title
+            POST_BODY=$(echo "$CONTENT" | sed -n '/<h1 id="post-title">/,/<\/body>/ { /<h1 id="post-title">/d; /<\/body>/d; p }')
 
             # Wrap in a card div
             echo "<div class='card'>" >> $INDEX_FILE
@@ -79,3 +83,4 @@ jobs:
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+ets.GITHUB_TOKEN }}
