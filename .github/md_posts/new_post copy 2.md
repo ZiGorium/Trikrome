@@ -1,6 +1,8 @@
 # My First Post
 
-this is the first thing ever written ever that is and was but is not yet what it could be
+Potfa line of sight is making steady progress.
+
+soon creatures will be abe to not see each other through walls.
 
 - Item 1
     super cool
