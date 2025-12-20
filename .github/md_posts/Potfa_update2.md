@@ -7,7 +7,7 @@ tags: ["devupdate", "summary"]
 excerpt: "potfa updates."
 ---
  
- Just added line of sight, builings have collsion, and montser can path towards the player when he is in view.
+ Just added line of sight, builings have collsion, and montser can path towards the player when he is in view. great stuffs
 
  sadly, there are a few bugs but those will get worked out eventually as awlays.
 
