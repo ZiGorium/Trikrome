@@ -1,6 +1,6 @@
 ---
 title: "Trikrome's Launch"
-date: 2025-21-20
+date: 2025-12-25
 author: "Bofoi"
 categories: ["Trikrome"]
 excerpt: "Goal statment of Trikrome"
