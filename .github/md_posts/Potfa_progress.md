@@ -9,6 +9,9 @@ title: "Potfa progress"
  also thinking about adding farming with livestock as well!!!
 
 
+ Things Id also like to implement would be light based mechanics, and where territory expands with the light plans you plant.
+
+
 My current goals for the upcoming Alpha are:
     -Inventory
     -Harvestnig
