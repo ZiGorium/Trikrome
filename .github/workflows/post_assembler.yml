@@ -23,11 +23,13 @@ jobs:
           mkdir -p posts
           for file in .github/md_posts/*.md; do
             filename=$(basename "$file" .md)
+            date=$(grep '^date:' "$file" | head -n1 | awk '{print $2}')
             pandoc "$file" \
               --standalone \
               --template=./templates/post_template.html \
               --css=../css/style.css \
               -o "posts/$filename.html"
+            sed -i "1i <!-- date: $date -->" "posts/$filename.html"
           done
 
       - name: Commit and push generated HTML
