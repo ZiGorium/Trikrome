@@ -35,7 +35,8 @@ for filename in os.listdir(POSTS_DIR):
         posts.append({"path": path, "date": date})
 
 # Step 2: Sort descending by date
-posts.sort(key=lambda x: x["date"], reverse=True)
+# posts.sort(key=lambda x: x["date"], reverse=True)
+posts.sort(key=lambda x: x["date"], reverse=False)
 
 # Step 3: Move older posts to archive
 top_posts = posts[:MAX_POSTS]
