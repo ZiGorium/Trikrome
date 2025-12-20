@@ -43,9 +43,10 @@ a
 
 body {
     background-image: url("../images/backsite.png");
-    background-size: 120% auto;     /* 120% of the body width, height auto */
-    background-position: center 20%; /* vertical offset */
+    background-size: 120% auto;     
+    background-position: center 20%; 
     background-repeat: no-repeat;
+    background-attachment: fixed;
     margin: 0;
     font-family: "BigBlue", monospace;
     color: white;
