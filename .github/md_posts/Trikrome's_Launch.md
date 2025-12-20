@@ -5,18 +5,18 @@ author: "Bofoi"
 categories: ["Trikrome"]
 excerpt: "Goal statment of Trikrome"
 ---
-
+# Trikrome
 
 This is a list of all the things Trikrome plans to accomplish:
 
 
--Item 1
+- 1:
     Make fun games
--Item 2
+- 2:
     Grow a online community
--Item 3
+- 3:
     Give to charity
--Item 4 
+- 4:
     Make some money
 
 
