@@ -10,7 +10,7 @@ excerpt: "First mention of Phyzik factory"
 
 # phyzik factory
 
-Possible game, App on the Iphone. Papas pizziaria + Factorio + physics game.
+Possible game, App on the Iphone. Papas pizziaria + Factorio + physics game!
 
 take in unprocessed materials. Process them, refine them, and ship them out, paid for the work or to be sold.
 
