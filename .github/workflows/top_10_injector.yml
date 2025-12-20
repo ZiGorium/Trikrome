@@ -1,0 +1,46 @@
+name: Top 10 Injector
+
+# Trigger: when posts folder changes (after HTML generation workflow)
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - posts/**
+
+jobs:
+  inject-top-10:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: true
+
+      # Step 2: Set up Python (already installed on ubuntu-latest, optional)
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      # Step 3: Install dependencies (if any, optional)
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt || echo "No dependencies"
+
+      # Step 4: Run the top 10 injector script
+      - name: Run top 10 injector
+        run: python3 scripts/top_10_inject.py
+
+      # Step 5: Commit & push changes
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add index.html posts/* archive/*
+          git commit -m "Update top 10 posts" || echo "No changes to commit"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
