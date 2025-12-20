@@ -1,7 +1,10 @@
 name: Top 10 Injector
 
 # Trigger: when posts folder changes (after HTML generation workflow)
+
+
 on:
+  workflow_dispatch:
   workflow_run:
     workflows: ["post_assembler"]
     types:
