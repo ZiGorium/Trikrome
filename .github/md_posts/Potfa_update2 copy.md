@@ -3,7 +3,6 @@ title: "Potfa_Update"
 date: 2025-12-20
 author: "Bofoi"
 categories: ["Potfa", "Gamedev"]
-tags: ["devupdate", "summary"]
 excerpt: "potfa updates."
 ---
  

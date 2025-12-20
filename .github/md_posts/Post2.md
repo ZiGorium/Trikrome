@@ -1,3 +1,13 @@
+---
+title: "Plan for Living realms"
+date: 2025-12-20
+author: "Bofoi"
+categories: ["Living realms", "Portfolio"]
+excerpt: "Living realms road map"
+---
+
+
+
 # Second Test Post
 
 This is to test and see if the github action / workflow can even see files getting pushed to the md_posts/** area
