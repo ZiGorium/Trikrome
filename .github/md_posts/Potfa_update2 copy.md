@@ -1,6 +1,6 @@
 ---
 title: "Potfa_Update"
-date: 2025-1-20
+date: 2025-01-20
 author: "Bofoi"
 categories: ["Potfa", "Gamedev"]
 excerpt: "potfa updates."

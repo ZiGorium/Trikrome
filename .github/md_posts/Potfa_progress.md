@@ -1,11 +1,14 @@
 ---
 title: "Potfa_Update"
-date: 2025-8-20
+date: 2025-08-20
 author: "Bofoi"
 categories: ["Potfa", "Gamedev"]
 excerpt: "potfa updates."
 ---
  
+
+
+
  Potfa as a whole is making steady progress.
  
  
