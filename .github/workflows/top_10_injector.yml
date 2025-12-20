@@ -2,11 +2,10 @@ name: Top 10 Injector
 
 # Trigger: when posts folder changes (after HTML generation workflow)
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - posts/**
+  workflow_run:
+    workflows: ["post_assembler"]
+    types:
+      - completed
 
 jobs:
   inject-top-10:
