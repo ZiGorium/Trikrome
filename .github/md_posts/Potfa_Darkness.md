@@ -15,7 +15,8 @@ My current Goals to get the game into Alpha are:
 
 
 - Combat  
-    currently as things stand, combat amounts to enemy creatures walking up to the player and hitting him. Though rather than reduce the player's health, they just get teleported a small distance away.
+  
+    &nbsp;&nbsp;currently as things stand, combat amounts to enemy creatures walking up to the player and hitting him. Though rather than reduce the player's health, they just get teleported a small distance away.
 - Creature pathing  
     Pathing is basic, but functional at the moment. Though I will be adding memory based mechanics, where they will travel to the last known spot, rather than just standing still the moment the player is no longer in view. But this will be tricky, as the creature might have to mark their most recent memory with some way of denoting the memory has been investigated, so that they don't get stuck investigating a memory forever.
 - Lighting  
