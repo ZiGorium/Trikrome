@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trikrome</title>
+    <link rel="stylesheet" href="css/style.css?v=1"> 
+</head>
+<body>
+    <h1>Trikrome</h1>
+
+    <nav>
+        <a href="index.html">Home</a> 
+        <a href="posts.html">Posts</a>
+    </nav>
+    <hr>
+        <div class="sideward">
+            <div class="card">
+                <h2>Living Realms</h2>
+                <p>Welcome to living realms! A little project I started to learn about Devops, Docker and a whole other suite of tools.</p>
+
+                <h3>What is it?</h3>
+                <p>Living realms is a virtual fantasy world simulator. Each turn, leaders of a kingdom choose actions to affect the world they inhabit — whether it’s attacking a rival kingdom, expanding industry, or shoring up defenses. There is no end, and there is no victory, only eternal simulation.</p>
+
+                <p>Though the "what" is interesting, the more important part is the <em>how</em>. The goal is not a fantasy world simulator, but rather a project that develops my Devops skills and grows my capabilities with cloud tools.</p>
+
+                <p>Each Realm is a single Docker container running on a shared EC2 instance. I chose this over AWS's managed Docker service to gain a deeper understanding of Docker. Each container is its own realm, with agents, tiles, resources, and battles. In the middle of all realms is the Nexus, an orchestrator container that communicates world state to and from realms.</p>
+
+                <p>The full overview: The website polls a Lambda function, which finds the EC2 instance running the realms and the Nexus. The Lambda requests the desired realm state and receives JSON, which is then graphically represented on the website.</p>
+                <button id="getDataBtn">Get World State JSON</button>
+    <pre id="output"></pre>
+
+    <script>
+        const btn = document.getElementById('getDataBtn');
+        const output = document.getElementById('output');
+
+        btn.addEventListener('click', () => {
+            fetch('data.json')  // fetch your local JSON
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Display JSON in the browser
+                    output.textContent = JSON.stringify(data, null, 2);
+
+                    // Optional: log to console like a real API
+                    console.log("Received JSON:", data);
+                })
+                .catch(error => {console.error('Error fetching JSON:', error);output.textContent = 'Error fetching JSON';});});
+    </script>
+    </div>
+    <div class="world_display"></div>
+    <script src="script.js"></script>
+</body>
+</html>

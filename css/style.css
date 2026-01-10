@@ -76,6 +76,20 @@ body {
     font-family: "BigBlue", monospace;
 }
 
+.world_display {
+    background-color: #000;      /* black background */
+    color: white;                /* text color */
+    border-radius: 10px;
+    border: 2px solid #fff;
+    padding: 20px;
+    max-width: 100%;       /* allow it to grow fully */
+    flex: 1 1 auto;        /* grow to fill remaining space */            /* fixed card width */
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* subtle shadow */
+    margin-right: 20px; 
+    font-family: "BigBlue", monospace;
+    display: flex;               /* make flex to allow grid inside */
+    flex-direction: column;      /* stack content vertically */
+}
 .card h2 {
     margin-top: 0;
     margin-bottom: 10px;
@@ -83,4 +97,44 @@ body {
 
 .card p {
     margin: 0;
+}
+
+
+.sideward
+{
+    display: flex;       /* ensures children go side by side */
+    gap: 20px;           /* spacing between elements */
+}
+
+.sideward p
+{
+    padding: 10px;
+    margin: 0; 
+}
+
+
+.image_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    gap: 10px;                   /* spacing between images */
+    margin: 5px 0;
+}
+
+.grid_item img {
+    /*border-radius: 10px;*/
+    display: block; 
+    aspect-ratio: 1 / 1; 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;          /* fills the grid cell */
+    image-rendering: pixelated; /* keeps pixel-art sharp */
+    image-rendering: crisp-edges; /* fallback for some browsers */
+}
+
+
+.grid_item {
+    border: 2px solid black; /* outer border; can be dynamic */
+    width: 50px;   /* or whatever your grid cell size */
+    height: 50px;
+    box-sizing: border-box;
 }

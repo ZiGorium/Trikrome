@@ -36,5 +36,4 @@ As things stand, this is more or less the start of things officially. This year 
 
 
 - **Final Notes**
-
-&nbsp;&nbsp; with these things in mind, I think its going to be a productive year. Potfa should hit Alpha, Phyzik Factory either will be launched or at minimum get to pre launch beta. Get some planning for Netimals layed down. And honestly not much else. It will be a quiet year for me, If everything goes awesome, in 2027 ill have Phyzik factory fully ready and launched on the appstore, and lots of tik-tok / Youtube shorts adds out there to spread the word. Other than that, theres not much to say. Good luck out there, and thanks for the support.
+    &nbsp;&nbsp; with these things in mind, I think its going to be a productive year. Potfa should hit Alpha, Phyzik Factory either will be launched or at minimum get to pre launch beta. Get some planning for Netimals layed down. And honestly not much else. It will be a quiet year for me, If everything goes awesome, in 2027 ill have Phyzik factory fully ready and launched on the appstore, and lots of tik-tok / Youtube shorts adds out there to spread the word. Other than that, theres not much to say. Good luck out there, and thanks for the support.
